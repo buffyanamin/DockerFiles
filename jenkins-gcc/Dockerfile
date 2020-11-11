@@ -2,6 +2,9 @@
 FROM jenkins/jenkins:lts-alpine
 
 ENV http_proxy=http://127.0.0.1:8118
+ENV https_proxy=http://127.0.0.1:8118
+ENV HTTP_PROXY=http://127.0.0.1:8118
+ENV HTTPS_PROXY=http://127.0.0.1:8118
 
 USER root
 
@@ -13,6 +16,8 @@ RUN apk -U add go
 RUN apk -U add build-base
 
 RUN apk add --no-cache -U alpine-sdk 
+
+RUN apk add --no-cache -U subversion
 
 #RUN apk add --no-cache --virtual .build-deps bash gcc musl-dev openssl go
 #RUN wget -O go.tgz https://golang.org/dl/go1.14.4.src.tar.gz && tar -C /usr/local -xzf go.tgz
